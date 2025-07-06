@@ -1,5 +1,5 @@
 export async function getStrapiData(path) {
-  const baseUrl = "http://localhost:1337";
+  const baseUrl = process.env.STRAPI_URL || "http://localhost:1337";
   const authToken = null;
   const headers = {
     "Content-Type": "application/json",
