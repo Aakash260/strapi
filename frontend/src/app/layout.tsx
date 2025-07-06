@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { getHeaderFooter } from "@/lib/service/getStrapiData";
@@ -18,7 +17,7 @@ const geistMono = Geist_Mono({
 
 const { data: metaData } = await generateMetadata();
 console.log(metaData, "metadata");
-export const metadata: Metadata = {
+export const metadata = {
   title: metaData?.title || "",
   description: metaData?.description || "",
 };

@@ -37,7 +37,7 @@ interface SearchParamsProps {
 }
 
 export default async function SummariesRoute({ searchParams }: any) {
-  const query = searchParams?.query ?? "";
+  const query = (await searchParams?.query) ?? "";
   const currentPage = Number(searchParams?.page) || 1;
   const { data, meta } = await getAllSummary(query, currentPage);
   console.log(meta);
