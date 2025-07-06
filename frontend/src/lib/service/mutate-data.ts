@@ -2,7 +2,8 @@ import { getAuthToken } from "./getToke";
 
 export async function mutateData(method: string, path: string, payload?: any) {
   const authToken = await getAuthToken();
-  const url = new URL(`http://localhost:1337${path}`);
+  const BASE_URL = process.env.STRAPI_URL || "http://localhost:1337";
+  const url = new URL(`${BASE_URL}${path}`);
 
   if (!authToken) throw new Error("No auth token found");
   console.log(payload, "payload to strapi");

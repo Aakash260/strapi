@@ -45,11 +45,13 @@ async function fetchData(url: string) {
 }
 
 export async function getSummariesById(videoId: string) {
-  const url = `http://localhost:1337/api/summaries/${videoId}`;
+  const BASE_URL = process.env.STRAPI_URL || "http://localhost:1337";
+  const url = `${BASE_URL}/api/summaries/${videoId}`;
   return await fetchData(url);
 }
 
 export async function getAllSummary(queryString: string, currentPage: number) {
+  const BASE_URL = process.env.STRAPI_URL || "http://localhost:1337";
   const PAGE_SIZE = 4;
 
   // Build filter query
@@ -65,7 +67,7 @@ export async function getAllSummary(queryString: string, currentPage: number) {
     `pagination[page]=${currentPage}&` + `pagination[pageSize]=${PAGE_SIZE}`;
 
   // Final URL
-  const url = `http://localhost:1337/api/summaries?${sort}&${filters}&${pagination}`;
+  const url = `${BASE_URL}/api/summaries?${sort}&${filters}&${pagination}`;
 
   return fetchData(url);
 }

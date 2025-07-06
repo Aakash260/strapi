@@ -17,10 +17,10 @@ const geistMono = Geist_Mono({
 });
 
 const { data: metaData } = await generateMetadata();
-
+console.log(metaData, "metadata");
 export const metadata: Metadata = {
-  title: metaData?.title,
-  description: metaData?.description,
+  title: metaData?.title || "",
+  description: metaData?.description || "",
 };
 
 const { data } = await getHeaderFooter();

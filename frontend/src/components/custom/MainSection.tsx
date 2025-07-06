@@ -56,6 +56,8 @@ interface HeroSection {
   SubHeading: string;
   image: Image;
   link: Link;
+  hash: string;
+  ext: string;
 }
 
 interface PageData {
@@ -70,19 +72,27 @@ interface PageData {
   meta: any;
 }
 
-const MainSection = async ({ data }: { data: HeroSection }) => {
+const MainSection = async ({ data }: { data: any }) => {
   const user = await getUserMeLoader();
   const linkUrl = user.ok ? "/dashboard" : data.link.url;
+  const baseUrl = process.env.STRAPI_URL || "http://localhost:1337";
+  const isLocal = baseUrl === "http://localhost:1337";
+  console.log(data, "data");
+  const imageUrl = isLocal
+    ? "/image.png"
+    : `${
+        "https://perfect-belief-e537fc91cf.media.strapiapp.com/" +
+        data?.image.hash +
+        data?.image.ext
+      }`;
 
+  console.log(imageUrl, "image data");
   return (
     <section className="relative w-full h-screen">
       <div key={data.id} className="relative w-full h-screen">
         <Image
-          src={
-            "http://localhost:1337" + data.image?.formats?.medium?.url ||
-            data.image.url
-          }
-          alt={data.image.alternativeText}
+          src={imageUrl}
+          alt={data?.alternativeText || "Image"}
           fill
           className="absolute inset-0 w-full h-full object-cover"
         />
