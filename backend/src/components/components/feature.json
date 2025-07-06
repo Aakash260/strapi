@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_components_features",
+  "info": {
+    "displayName": "Feature"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "icons": {
+      "type": "enumeration",
+      "enum": [
+        "Icon1",
+        "Icon2",
+        "Icon3"
+      ]
+    }
+  },
+  "config": {}
+}
